@@ -1,3 +1,5 @@
+## ※まだ作成中
+- ハードコーディング部分が多いので、変数化を検討中
 
 ## 前提
 - AWS CLI がインストール済であり、適切なアクセス権限をもつIAMアカウントを設定済であること
@@ -33,4 +35,23 @@ aws s3api put-public-access-block --bucket tf-cicd-ecr \
 }'
 
 ## S3作成は Cloudformation化 するのもよいかも
+```
+
+## Terraform の初期セットアップ
+
+```
+# 初期セットアップ
+terraform init
+
+# 変更箇所の確認
+terraform plan
+
+# 変更箇所のリリース
+terraform apply
+
+# 設定した出力内容の確認
+terraform output
+
+# リリース内容の確認
+terraform show
 ```
