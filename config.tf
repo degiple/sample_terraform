@@ -3,9 +3,11 @@ terraform {
   required_version = ">= 0.12"
 
   backend "s3" {
-    bucket = "tf-cicd-ecr"
-    key = "example/terraform.tfstate"
-    region = "ap-northeast-1"
+    encrypt        = true
+    bucket         = "tf-cicd-ecr"
+    dynamodb_table = "tf-state-lock"
+    key            = "terraform.tfstate"
+    region         = "ap-northeast-1"
   }
 }
 
