@@ -51,4 +51,9 @@ resource "aws_codebuild_project" "example" {
     image           = "aws/codebuild/standard:4.0"
     privileged_mode = true
   }
+  
+  cache {
+    type     = "S3"
+    location = "take-tf-cicdecr-build-cache"
+  }
 }

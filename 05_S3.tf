@@ -9,3 +9,7 @@ resource "aws_s3_bucket" "artifact" {
     }
   }
 }
+
+resource "aws_s3_bucket" "build-cache" {
+  bucket = "take-tf-cicdecr-build-cache"
+}
