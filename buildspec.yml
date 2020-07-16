@@ -1,0 +1,30 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto8
+    commands:
+      - echo Entered the install phase...
+      - apt-get update -y
+      - apt-get install -y maven
+    finally:
+      - echo maven Install finished
+  pre_build:
+    commands:
+      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      - REPO=$(aws ecr describe-repositories --repository-names example --output text --query "repositories[0].repositoryUri")
+      - IMAGE=$REPO:latest
+  build:
+    commands:
+      - echo Entered the build phase...
+      - echo Build started on `date`
+      - mvn install
+      - docker build -t $IMAGE .
+      - docker push $IMAGE
+  post_build:
+    commands:
+      - printf '[{"name":"example","imageUri":"%s"}]' $IMAGE > imagedefinitions.json
+artifacts:
+  files:
+    - imagedefinitions.json

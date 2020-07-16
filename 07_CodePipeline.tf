@@ -52,7 +52,7 @@ resource "aws_codepipeline" "example" {
         # Owner                = "your-github-name"
         # Repo                 = "take-samples"
         # Branch               = "master"
-        RepositoryName  = "take-samples"
+        RepositoryName  = "tf-cicd-ecr"
         BranchName = "master"
         # PollForSourceChanges = false
       }
