@@ -54,6 +54,6 @@ resource "aws_codebuild_project" "example" {
   
   cache {
     type     = "S3"
-    location = "take-tf-cicdecr-build-cache"
+    location = aws_s3_bucket.build-cache.bucket
   }
 }
